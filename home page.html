@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="vi2.css">
+    
+</head>
+<body>
+ 
+<div style="position:relative; width:100%; max-width:1290px; margin:auto;   `">
+  <!-- Hero Image -->
+  <img src="https://easternmirror-assets.s3.ap-south-1.amazonaws.com/images/2023/08/Netflix-all-movies-and-series-featured-image.jpg" 
+       alt="Hero" style="width:100%; height:auto; display:block;">
+
+  <!-- Navbar -->
+  <nav style="position:absolute; top:0; left:0; width:100%; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; padding:10px 15px; background-color:rgba(0,0,0,0.714); border-radius:0; box-sizing:border-box; z-index:10;">
+    <!-- Left: Logo + Search -->
+    <div style="display:flex; flex-wrap:wrap; align-items:center; gap:10px; flex:1 1 auto; min-width:150px;">
+      <img src="https://www.svgrepo.com/show/111051/entertainment.svg" alt="Logo" style="width:25px; height:25px;">
+      <div style="position:relative; flex:1 1 150px; min-width:120px;">
+        <input type="text" placeholder="Find Movies & TV" 
+               style="width:100%; padding:8px 10px 8px 35px; border:none; border-radius:10px; background-color:rgba(54,53,53,0.527); color:white; font-size:1rem; box-sizing:border-box;">
+        <img src="https://www.svgrepo.com/show/532555/search.svg" alt="Search Icon" 
+             style="position:absolute; top:50%; left:10px; transform:translateY(-50%); width:15px; height:15px;">
+      </div>
+    </div>
+
+    <!-- Right: Links + Button -->
+    <div id="nav-links" style="display:flex; flex-wrap:wrap; align-items:center; gap:15px; flex:1 1 auto; justify-content:flex-end; margin-top:5px;">
+      <a href="#" style="text-decoration:none; color:white; font-weight:bold; font-size:1rem;" 
+         onmouseover="this.style.color='rgb(255,166,0)'" onmouseout="this.style.color='white'">Free Movies&TV</a>
+      <a href="#" style="text-decoration:none; color:white; font-weight:bold; font-size:1rem;" 
+         onmouseover="this.style.color='rgb(255,166,0)'" onmouseout="this.style.color='white'">Live TV</a>
+      <a href="#" style="text-decoration:none; color:white; font-weight:bold; font-size:1rem;" 
+         onmouseover="this.style.color='rgb(255,166,0)'" onmouseout="this.style.color='white'">Features</a>
+      <a href="#" style="text-decoration:none; color:white; font-weight:bold; font-size:1rem;" 
+         onmouseover="this.style.color='rgb(255,166,0)'" onmouseout="this.style.color='white'">Download</a>
+      <a href="#" style="text-decoration:none; color:white; font-weight:bold; font-size:1rem;" 
+         onmouseover="this.style.color='rgb(255,166,0)'" onmouseout="this.style.color='white'">Sign In</a>
+      <button id="bu" style="background-color:rgb(255,166,0); border:none; border-radius:8px; padding:8px 12px; font-weight:bold; color:white; font-size:1rem; cursor:pointer;" 
+              onmouseover="this.style.boxShadow='0px 0px 5px 5px rgb(208,206,206)'; this.style.color='red';" 
+              onmouseout="this.style.boxShadow='none'; this.style.color='white';">Sign Up Free</button>
+    </div>
+
+    <!-- Mobile toggle button -->
+    <button id="mobile-toggle" style="display:none; background:none; border:none; color:white; font-size:1.5rem; cursor:pointer;">☰</button>
+  </nav>
+
+  <!-- Hero Text -->
+  <div style="position:absolute; top:80px; left:5%; width:90%; max-width:700px;">
+    <h1 style="font-size:clamp(1.8rem,6vw,3rem); font-weight:bold; line-height:1.3; margin-bottom:10px; color:white;">
+      Free Movies Online, Watch Anytime Anywhere.
+    </h1>
+    <p style="font-size:clamp(1rem,3vw,1.3rem); line-height:1.5; margin-bottom:20px; color:white;">
+      The search is over! Let Flix help you find the perfect movies to watch tonight for free.
+    </p>
+    <button style="margin-top:20px; background-color:rgb(255,166,0); color:white; border:none; border-radius:30px; width:clamp(150px,40%,200px); height:50px; font-size:clamp(0.9rem,3vw,1.1rem); font-weight:bold; cursor:pointer;">
+      Watch Free
+    </button>
+  </div>
+</div>
+
+<script>
+  function checkWidth() {
+    var width = window.innerWidth;
+    var navLinks = document.getElementById('nav-links');
+    var toggleBtn = document.getElementById('mobile-toggle');
+    if(width <= 768){
+      navLinks.style.display = 'none';
+      toggleBtn.style.display = 'block';
+    } else {
+      navLinks.style.display = 'flex';
+      navLinks.style.flexDirection = 'row';
+      toggleBtn.style.display = 'none';
+    }
+  }
+  window.addEventListener('resize', checkWidth);
+  window.addEventListener('load', checkWidth);
+
+  document.getElementById('mobile-toggle').onclick = function(){
+    var navLinks = document.getElementById('nav-links');
+    if(navLinks.style.display === 'flex'){
+      navLinks.style.display = 'none';
+    } else {
+      navLinks.style.display = 'flex';
+      navLinks.style.flexDirection = 'column';
+      navLinks.style.backgroundColor = 'rgba(0,0,0,0.9)';
+      navLinks.style.position = 'absolute';
+      navLinks.style.top = '60px';
+      navLinks.style.right = '15px';
+      navLinks.style.padding = '10px';
+      navLinks.style.borderRadius = '8px';
+    }
+  }
+</script>
+
+<!-- Inline JS for mobile responsiveness -->
+<script>
+  function checkWidth() {
+    var width = window.innerWidth;
+    var navLinks = document.getElementById('nav-links');
+    var toggleBtn = document.getElementById('mobile-toggle');
+    if(width <= 768){
+      navLinks.style.display = 'none';
+      toggleBtn.style.display = 'block';
+    } else {
+      navLinks.style.display = 'flex';
+      navLinks.style.flexDirection = 'row';
+      toggleBtn.style.display = 'none';
+    }
+  }
+  window.addEventListener('resize', checkWidth);
+  window.addEventListener('load', checkWidth);
+
+  document.getElementById('mobile-toggle').onclick = function(){
+    var navLinks = document.getElementById('nav-links');
+    if(navLinks.style.display === 'flex'){
+      navLinks.style.display = 'none';
+    } else {
+      navLinks.style.display = 'flex';
+      navLinks.style.flexDirection = 'column';
+      navLinks.style.backgroundColor = 'rgba(0,0,0,0.9)';
+      navLinks.style.position = 'absolute';
+      navLinks.style.top = '60px';
+      navLinks.style.right = '15px';
+      navLinks.style.padding = '10px';
+      navLinks.style.borderRadius = '8px';
+    }
+  }
+</script>
+
+<!-- Inline JS for mobile responsiveness -->
+<script>
+  function checkWidth() {
+    var width = window.innerWidth;
+    var navLinks = document.getElementById('nav-links');
+    var toggleBtn = document.getElementById('mobile-toggle');
+    if(width <= 768){
+      navLinks.style.display = 'none';
+      toggleBtn.style.display = 'block';
+    } else {
+      navLinks.style.display = 'flex';
+      navLinks.style.flexDirection = 'row';
+      toggleBtn.style.display = 'none';
+    }
+  }
+  window.addEventListener('resize', checkWidth);
+  window.addEventListener('load', checkWidth);
+
+  document.getElementById('mobile-toggle').onclick = function(){
+    var navLinks = document.getElementById('nav-links');
+    if(navLinks.style.display === 'flex'){
+      navLinks.style.display = 'none';
+    } else {
+      navLinks.style.display = 'flex';
+      navLinks.style.flexDirection = 'column';
+      navLinks.style.backgroundColor = 'rgba(0,0,0,0.9)';
+      navLinks.style.position = 'absolute';
+      navLinks.style.top = '60px';
+      navLinks.style.right = '15px';
+      navLinks.style.padding = '10px';
+      navLinks.style.borderRadius = '8px';
+    }
+  }
+</script>
+
+
+<!-- Inline JS for mobile responsiveness -->
+<script>
+  function checkWidth() {
+    var width = window.innerWidth;
+    var navLinks = document.getElementById('nav-links');
+    var toggleBtn = document.getElementById('mobile-toggle');
+    if(width <= 768){
+      navLinks.style.display = 'none';
+      toggleBtn.style.display = 'block';
+    } else {
+      navLinks.style.display = 'flex';
+      toggleBtn.style.display = 'none';
+    }
+  }
+  window.addEventListener('resize', checkWidth);
+  window.addEventListener('load', checkWidth);
+
+  document.getElementById('mobile-toggle').onclick = function(){
+    var navLinks = document.getElementById('nav-links');
+    if(navLinks.style.display === 'flex'){
+      navLinks.style.display = 'none';
+    } else {
+      navLinks.style.display = 'flex';
+      navLinks.style.flexDirection = 'column';
+      navLinks.style.backgroundColor = 'rgba(0,0,0,0.9)';
+      navLinks.style.position = 'absolute';
+      navLinks.style.top = '60px';
+      navLinks.style.right = '15px';
+      navLinks.style.padding = '10px';
+      navLinks.style.borderRadius = '8px';
+    }
+  }
+</script>
+
+<div style="background-color:#fff; color:#000; padding:50px 20px; display:flex; flex-wrap:wrap; justify-content:center; gap:30px;">
+  <div style="flex:1 1 220px; max-width:300px; min-width:200px; text-align:center;">
+    <img src="https://www.svgrepo.com/show/215422/worldwide-global.svg" alt="Worldwide" style="width:60px; height:60px; margin-bottom:15px;">
+    <h3 style="font-size:1.1rem; font-weight:bold; margin-bottom:10px;">Works Worldwide</h3>
+    <p style="font-size:0.9rem; line-height:1.4;">No other free streaming service delivers more content to and from more countries worldwide.</p>
+  </div>
+  <div style="flex:1 1 220px; max-width:300px; min-width:200px; text-align:center;">
+    <img src="https://www.svgrepo.com/show/59333/movies.svg" alt="Titles" style="width:60px; height:60px; margin-bottom:15px;">
+    <h3 style="font-size:1.1rem; font-weight:bold; margin-bottom:10px;">Thousands of Titles</h3>
+    <p style="font-size:0.9rem; line-height:1.4;">Choose from movies, shows, sports, documentaries, AMC series, Live TV and more.</p>
+  </div>
+  <div style="flex:1 1 220px; max-width:300px; min-width:200px; text-align:center;">
+    <img src="https://www.svgrepo.com/show/246909/piggy-bank-money.svg" alt="Free" style="width:60px; height:60px; margin-bottom:15px;">
+    <h3 style="font-size:1.1rem; font-weight:bold; margin-bottom:10px;">Always 100% Free</h3>
+    <p style="font-size:0.9rem; line-height:1.4;">Enjoy instant access without any payments or subscriptions. End the search for free movies online.</p>
+  </div>
+  <div style="flex:1 1 220px; max-width:300px; min-width:200px; text-align:center;">
+    <img src="https://www.svgrepo.com/show/444243/device-multiple-devices.svg" alt="Device-Friendly" style="width:60px; height:60px; margin-bottom:15px;">
+    <h3 style="font-size:1.1rem; font-weight:bold; margin-bottom:10px;">Device-Friendly</h3>
+    <p style="font-size:0.9rem; line-height:1.4;">Stream content on your favorite device including Apple, Android, Smart TVs and more.</p>
+  </div>
+</div>
+<!-- Main Section -->
+<div style="background-image:linear-gradient(to right,#d74c91fc,rgba(93,93,255,0.953)); width:100%; display:flex; flex-wrap:wrap; justify-content:center; align-items:center; padding:50px 20px; box-sizing:border-box;">
+
+  <!-- Left Text -->
+  <div style="flex:1 1 300px; max-width:550px; color:white; margin-bottom:30px;">
+    <div style="font-size:2.5rem; font-weight:bold; margin-bottom:20px; line-height:1.2;">
+      See what's new on <br>Pluto TV, Tubi,& more.
+    </div>
+    <div style="font-size:1rem; margin-bottom:30px; line-height:1.5;">
+      Select your favorite streaming services to discover <br>
+      more, search faster, and get curated <br>
+      recommendations—all without ever leaving plex. <br>
+      Connect with friends to see who’s watching what, <br>
+      where.
+    </div>
+    <button style="border:none; background-color:rgb(255,166,0); color:white; border-radius:15px; width:230px; height:45px; font-weight:bold; cursor:pointer; transition:0.3s;"
+            onmouseover="this.style.boxShadow='0 0 5px 5px rgb(208,206,206)'; this.style.color='red'" 
+            onmouseout="this.style.boxShadow='none'; this.style.color='white'">
+      Discover More Now
+    </button>
+  </div>
+
+  <!-- Right Image -->
+  <div style="flex:1 1 300px; max-width:650px; display:flex; justify-content:center; margin-bottom:30px;">
+    <img src="https://www.plex.tv/wp-content/uploads/2025/03/watch-free-disco_hero-1024x778.png" 
+         alt="Discover" 
+         style="width:100%; max-width:650px; height:auto;">
+  </div>
+
+</div>
+
+
+        
+
+<!-- Main Section -->
+<div style="background-color:rgba(251,245,245,0.953); width:100%; display:flex; flex-wrap:wrap; align-items:center; justify-content:center; padding:50px 20px; box-sizing:border-box;">
+
+  <!-- Left Image -->
+  <div style="flex:1 1 300px; display:flex; justify-content:center; margin-bottom:30px;">
+    <img src="https://www.plex.tv/wp-content/uploads/2025/03/watch-free-mobile.png" 
+         alt="Watch Free" 
+         style="width:100%; max-width:500px; height:auto;">
+  </div>
+
+  <!-- Right Text -->
+  <div style="flex:1 1 300px; max-width:600px; margin-left:20px;">
+    <div style="font-size:2rem; font-weight:bold; margin-bottom:20px; line-height:1.2;">
+      It has never been easier to <br> watch free movies online.
+    </div>
+    <div style="font-size:1rem; margin-bottom:30px; color:rgb(50,50,50); line-height:1.5;">
+      Once you register for a free account with Plex, we’ll keep your place <br>
+      from screen to screen as long as you’re signed in. No matter what <br>
+      device you choose, your free movies will pick up where you left off <br>
+      with ease.
+    </div>
+    <button style="background-color:rgb(255,166,0); border:none; color:white; border-radius:20px; width:150px; height:45px; font-weight:bold; cursor:pointer; transition:0.3s;"
+            onmouseover="this.style.boxShadow='0 0 5px 5px rgb(208,206,206)'; this.style.color='red'" 
+            onmouseout="this.style.boxShadow='none'; this.style.color='white'">
+      Watch Free
+    </button>
+  </div>
+
+</div>
+
+ 
+
+<!-- outer white box (responsive) -->
+<div style="max-width:1290px;width:100%;margin:20px auto;background:white;padding:20px;border-radius:6px;">
+
+  <div style="font-size:2rem;text-align:center;margin-bottom:12px;">
+    <b>Playing now on Plex</b>
+  </div>
+
+  <!-- SLIDER: responsive via aspect-ratio -->
+  <div id="sliderBox" style="width:80%;max-width:1290px;margin:0 auto;position:relative;overflow:hidden;border-radius:10px;aspect-ratio:16/9;">
+    <div id="slides" style="display:flex;height:80%;transition:transform .6s ease;will-change:transform;margin-top:40px;">
+      <!-- slide 1 -->
+      <div class="slide" style="min-width:90%;height:100%;flex:0 0 100%;">
+        <img src="https://m.media-amazon.com/images/I/71niXI3lxlL._AC_SL1500_.jpg"
+             alt="movie1"
+             style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+
+      <!-- slide 2 -->
+      <div class="slide" style="min-width:100%;height:100%;flex:0 0 100%;">
+        <img src="https://m.media-amazon.com/images/I/81p+xe8cbnL._AC_SL1500_.jpg"
+             alt="movie2"
+             style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+
+      <!-- slide 3 -->
+      <div class="slide" style="min-width:100%;height:100%;flex:0 0 100%;">
+        <img src="https://m.media-amazon.com/images/I/71rNJQ2g-EL._AC_SL1178_.jpg"
+             alt="movie3"
+             style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+
+      <!-- slide 4 -->
+      <div class="slide" style="min-width:100%;height:100%;flex:0 0 100%;">
+        <img src="https://webneel.com/sites/default/files/images/blog/2020/different-types-of-movie-posters.jpg"
+             alt="movie4"
+             style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+
+      <!-- slide 5 -->
+      <div class="slide" style="min-width:100%;height:100%;flex:0 0 100%;">
+        <img src="https://www.coffeeandcigarettes.co.uk/wp-content/uploads/2024/09/Kneecap_Theatrical_Quad_v1E_FINAL-500kb.jpg"
+             alt="movie5"
+             style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+    </div>
+
+    <!-- arrows (visible on all sizes) -->
+    <button id="prevBtn" style="position:absolute;left:12px;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.45);border:none;color:#fff;font-size:24px;padding:8px 10px;border-radius:6px;cursor:pointer;z-index:30;">❮</button>
+    <button id="nextBtn" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.45);border:none;color:#fff;font-size:24px;padding:8px 10px;border-radius:6px;cursor:pointer;z-index:30;">❯</button>
+  </div>
+
+  <!-- dots (centered) -->
+  <div id="dots" style="text-align:center;margin-top:-60px;"></div>
+
+  <div style="text-align:center;margin-top:16px;">
+    <button id="bu" style="border:none;background:rgb(255,166,0);color:#fff;border-radius:20px;width:180px;height:45px;font-weight:700;cursor:pointer;">See What's On</button>
+  </div>
+
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const slidesEl = document.getElementById('slides');
+  const slideEls = slidesEl.querySelectorAll('.slide');
+  const dotsWrap = document.getElementById('dots');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const sliderBox = document.getElementById('sliderBox');
+
+  const total = slideEls.length;
+  let index = 0;
+  let intervalId = null;
+
+  // ensure slides take full width (safety)
+  slideEls.forEach(s => { s.style.minWidth = '100%'; s.style.flex = '0 0 100%'; });
+
+  // build dots
+  for (let i = 0; i < total; i++) {
+    const dot = document.createElement('span');
+    dot.style.cssText = 'display:inline-block;width:10px;height:10px;margin:0 6px;background:#bbb;border-radius:50%;cursor:pointer;';
+    dot.dataset.i = i;
+    dot.onclick = () => { index = i; update(); restartAuto(); };
+    dotsWrap.appendChild(dot);
+  }
+
+  function updateDots() {
+    const dots = dotsWrap.children;
+    for (let i = 0; i < dots.length; i++) {
+      dots[i].style.background = (i === index) ? '#222' : '#bbb';
+    }
+  }
+
+  function update() {
+    // transform by percentage (works responsively)
+    slidesEl.style.transform = 'translateX(' + (-index * 100) + '%)';
+    updateDots();
+  }
+
+  function next() { index = (index + 1) % total; update(); }
+  function prev() { index = (index - 1 + total) % total; update(); }
+
+  prevBtn.addEventListener('click', () => { prev(); restartAuto(); });
+  nextBtn.addEventListener('click', () => { next(); restartAuto(); });
+
+  // basic touch support
+  let startX = 0, isDown = false;
+  sliderBox.addEventListener('pointerdown', (e) => { isDown = true; startX = e.clientX; slidesEl.style.transition = 'none'; });
+  sliderBox.addEventListener('pointermove', (e) => {
+    if (!isDown) return;
+    const dx = e.clientX - startX;
+    const percent = (dx / sliderBox.clientWidth) * 100;
+    slidesEl.style.transform = 'translateX(' + (-index * 100 + percent) + '%)';
+  });
+  sliderBox.addEventListener('pointerup', (e) => {
+    if (!isDown) return;
+    isDown = false;
+    slidesEl.style.transition = 'transform .6s ease';
+    const dx = e.clientX - startX;
+    if (dx > 40) prev();
+    else if (dx < -40) next();
+    else update();
+    restartAuto();
+  });
+  sliderBox.addEventListener('pointerleave', () => { if (isDown) { isDown = false; slidesEl.style.transition = 'transform .6s ease'; update(); restartAuto(); } });
+
+  // pause on hover and resume
+  sliderBox.addEventListener('mouseenter', () => { if (intervalId) clearInterval(intervalId); });
+  sliderBox.addEventListener('mouseleave', () => { restartAuto(); });
+
+  function restartAuto() {
+    if (intervalId) clearInterval(intervalId);
+    intervalId = setInterval(next, 3000);
+  }
+
+  // init
+  update();
+  restartAuto();
+
+  // accessibility: keyboard
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') { next(); restartAuto(); }
+    if (e.key === 'ArrowLeft')  { prev(); restartAuto(); }
+  });
+
+  // debug sizes in case you still see problems
+  setTimeout(() => {
+    console.log('sliderBox.clientWidth=', sliderBox.clientWidth, 'slide width=', slideEls[0].clientWidth, 'slides=', total);
+  }, 300);
+});
+</script>
+
+
+<div style="width:100%; background-color:rgba(210, 207, 207, 0.706); padding:50px 20px; box-sizing:border-box;">
+
+  <!-- Section Title -->
+  <div style="font-size:2.5rem; text-align:center; font-weight:bold; margin-bottom:20px;">
+    Don’t forget free TV.
+  </div>
+  <div style="text-align:center; font-size:1rem; margin-bottom:40px;">
+    A Live TV free for all has begun. Enjoy instant access to 600+ channels for the whole family anywhere, on any device.
+  </div>
+
+  <!-- TV Shows Grid -->
+  <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:20px;">
+    <div style="text-align:center; flex:1 1 200px; max-width:200px;">
+      <img src="https://images.plex.tv/photo?size=medium-360&scale=1&url=https%3A%2F%2Fprovider-static.plex.tv%2Fepg%2Fcms%2Fproduction%2F0e7b5404-e5be-472e-b13f-014671db8e5e%2FMDDH_KeyArt_1920x1080_-_Principal_Media.jpg" alt="Million Dollar Dreams" style="width:100%; height:auto; border-radius:10px;">
+      <p style="color:rgb(107, 99, 99); margin-top:10px;">Million Dollar Dreams</p>
+    </div>
+
+    <div style="text-align:center; flex:1 1 200px; max-width:200px;">
+      <img src="https://images.plex.tv/photo?size=medium-360&scale=1&url=https%3A%2F%2Fprovider-static.plex.tv%2Fepg%2Fcms%2Fproduction%2F3bb05c80-5316-4d9f-b6ce-ca2d1b22a123%2FFarscapeChannel-Image-_-About-Image---1920x1080.jpg" alt="Farscape" style="width:100%; height:auto; border-radius:10px;">
+      <p style="color:rgb(107, 99, 99); margin-top:10px;">Farscape</p>
+    </div>
+
+    <div style="text-align:center; flex:1 1 200px; max-width:200px;">
+      <img src="https://images.plex.tv/photo?size=medium-360&scale=1&url=https%3A%2F%2Fprovider-static.plex.tv%2Fepg%2Fcms%2Fproduction%2F458264fd-11c7-4568-9177-2373626ff752%2FWildEarth_artwork_Horizontal_logordx.jpg" alt="WildEarth" style="width:100%; height:auto; border-radius:10px;">
+      <p style="color:rgb(107, 99, 99); margin-top:10px;">WildEarth</p>
+    </div>
+
+    <div style="text-align:center; flex:1 1 200px; max-width:200px;">
+      <img src="https://images.plex.tv/photo?size=medium-360&scale=1&url=https%3A%2F%2Fprovider-static.plex.tv%2Fepg%2Fcms%2Fproduction%2Fa6061c55-e53f-48be-a207-02e9ba80dcfc%2Fcinedigm_bobross_HOR.jpg" alt="The Bob Ross Channel" style="width:100%; height:auto; border-radius:10px;">
+      <p style="color:rgb(107, 99, 99); margin-top:10px;">The Bob Ross Channel</p>
+    </div>
+
+    <div style="text-align:center; flex:1 1 200px; max-width:200px;">
+      <img src="https://images.plex.tv/photo?size=medium-360&scale=1&url=https%3A%2F%2Fprovider-static.plex.tv%2Fepg%2Fcms%2Fproduction%2F05831905-cf5b-4ffd-937b-f4049024b7b3%2F1920x1080_ZNation.jpg" alt="Z Nation" style="width:100%; height:auto; border-radius:10px;">
+      <p style="color:rgb(107, 99, 99); margin-top:10px;">Z Nation</p>
+    </div>
+  </div>
+
+  <!-- Button -->
+  <div style="text-align:center; margin-top:50px;">
+    <button style="border:none; background-color:rgb(255, 166, 0); color:white; border-radius:20px; width:250px; height:45px; font-weight:bold; cursor:pointer; box-shadow:0px 0px 5px 5px rgb(208, 206, 206);" onmouseover="this.style.color='red';" onmouseout="this.style.color='white';">
+      See What's On Now
+    </button>
+  </div>
+
+</div>
+
+
+
+        
+<div style="width:100%; background-color:white; padding:50px 20px; box-sizing:border-box; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:20px;">
+
+  <!-- Left Column: Text and Button -->
+  <div style="flex:1 1 300px; min-width:250px;">
+    <div style="font-size:2.2rem; font-weight:bold; margin-bottom:20px;">We’re <br> compatible.</div>
+    <div style="font-size:1rem; margin-bottom:20px;">Stream Plex from just about any phone, tablet, smart TV, gaming consoles, or PC.</div>
+    <img src="https://www.plex.tv/wp-content/uploads/2020/03/avod-device-icons-1.png" alt="Device Icons" style="width:100%; max-width:280px; height:auto; margin-bottom:30px;">
+    <button style="border:none; background-color:rgb(255, 166, 0); color:white; border-radius:20px; width:190px; height:45px; cursor:pointer; font-weight:bold;">Stream Free Now</button>
+  </div>
+
+  <!-- Right Column: Image -->
+  <div style="flex:1 1 300px; min-width:250px; display:flex; justify-content:center; align-items:center;">
+    <img src="https://www.plex.tv/wp-content/uploads/2025/03/watch-free-compatible-devices-1024x610.png" alt="Compatible Devices" style="width:100%; max-width:710px; height:auto;">
+  </div>
+
+</div>
+
+
+
+        
+
+<div style="width:100%; background-color:rgb(246, 241, 241); padding:50px 20px; box-sizing:border-box;">
+
+  <!-- Section Title -->
+  <div style="font-size:2.5rem; text-align:center; font-weight:bold; margin-bottom:40px;">
+    Proud Partners With:
+  </div>
+
+  <!-- Partner Logos -->
+  <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:30px; align-items:center;">
+    <img src="https://www.plex.tv/wp-content/uploads/2019/09/lionsgate.png" alt="Lionsgate" style="width:100px; height:100px;">
+    <img src="https://www.plex.tv/wp-content/uploads/2019/11/metro-goldwyn-mayer.png" alt="MGM" style="width:100px; height:100px;">
+    <img src="https://www.plex.tv/wp-content/uploads/2019/09/warner-bros.png" alt="Warner Bros" style="width:100px; height:100px;">
+    <img src="https://www.plex.tv/wp-content/uploads/2019/11/legendary.png" alt="Legendary" style="width:100px; height:100px;">
+    <img src="https://www.plex.tv/wp-content/uploads/2021/11/Paramount-Black-500x500-1.png" alt="Paramount" style="width:100px; height:100px;">
+    <img src="https://www.plex.tv/wp-content/uploads/2020/03/magnolia.png" alt="Magnolia" style="width:100px; height:100px;">
+  </div>
+
+</div>
+
+
+
+        
+        
+
+
+<div style="width:100%; background-color:rgba(40,37,37,0.991); color:white; padding:50px 20px; box-sizing:border-box; display:flex; flex-wrap:wrap; justify-content:space-around; gap:30px;">
+
+  <!-- Column 1: Company -->
+  <div style="flex:1 1 150px; min-width:150px;">
+    <div style="font-weight:bold; margin-bottom:10px;">Company</div>
+    <div style="font-size:13px; margin-bottom:4px; color:rgb(165,163,163);">About</div>
+    <div style="font-size:13px; margin-bottom:4px; color:rgb(165,163,163);">Careers</div>
+    <div style="font-size:13px; margin-bottom:4px; color:rgb(165,163,163);">Our Culture</div>
+    <div style="font-size:13px; margin-bottom:4px; color:rgb(165,163,163);">Giving</div>
+    <div style="font-size:13px; margin-bottom:4px; color:rgb(165,163,163);">Partners</div>
+    <div style="font-size:13px; margin-bottom:4px; color:rgb(165,163,163);">News</div>
+    <div style="font-size:13px; margin-bottom:4px; color:rgb(165,163,163);">Plex Gear</div>
+    <div style="font-size:13px; margin-bottom:4px; color:rgb(165,163,163);">The Plex Blog</div>
+    <div style="font-size:13px; margin-bottom:4px; color:rgb(165,163,163);">Advertise With Us</div>
+  </div>
+
+  <!-- Column 2: Go Premium -->
+  <div style="flex:1 1 120px; min-width:120px;">
+    <div style="font-weight:bold; margin-bottom:10px;">Go Premium</div>
+    <div style="font-size:13px; margin-bottom:4px; color:rgb(165,163,163);">Plans</div>
+    <div style="font-size:13px; margin-bottom:4px; color:rgb(165,163,163);">Plexamp</div>
+    <div style="font-size:13px; margin-bottom:4px; color:rgb(165,163,163);">Plex Labs</div>
+    <div style="font-size:13px; margin-bottom:4px; color:rgb(165,163,163);">Get Perks</div>
+  </div>
+
+  <!-- Column 3: Downloads -->
+  <div style="flex:1 1 140px; min-width:140px;">
+    <div style="font-weight:bold; margin-bottom:10px;">Downloads</div>
+    <div style="font-size:13px; margin-bottom:4px; color:rgb(165,163,163);">Plex Media Server</div>
+    <div style="font-size:13px; margin-bottom:4px; color:rgb(165,163,163);">Plex</div>
+    <div style="font-size:13px; margin-bottom:4px; color:rgb(165,163,163);">Plexamp</div>
+    <div style="font-size:13px; margin-bottom:4px; color:rgb(165,163,163);">Plex Photos</div>
+    <div style="font-size:13px; margin-bottom:4px; color:rgb(165,163,163);">Plex Dash</div>
+    <div style="font-size:13px; margin-bottom:4px; color:rgb(165,163,163);">Where to Watch</div>
+  </div>
+
+  <!-- Column 4: Support -->
+  <div style="flex:1 1 140px; min-width:140px;">
+    <div style="font-weight:bold; margin-bottom:10px;">Support</div>
+    <div style="font-size:13px; margin-bottom:4px; color:rgb(165,163,163);">Finding Help</div>
+    <div style="font-size:13px; margin-bottom:4px; color:rgb(165,163,163);">Support Library</div>
+    <div style="font-size:13px; margin-bottom:4px; color:rgb(165,163,163);">Community Forums</div>
+    <div style="font-size:13px; margin-bottom:4px; color:rgb(165,163,163);">Community Guidelines</div>
+    <div style="font-size:13px; margin-bottom:4px; color:rgb(165,163,163);">Billing Questions</div>
+    <div style="font-size:13px; margin-bottom:4px; color:rgb(165,163,163);">Status</div>
+    <div style="font-size:13px; margin-bottom:4px; color:rgb(165,163,163);">Bug Bounty</div>
+    <div style="font-size:13px; margin-bottom:4px; color:rgb(165,163,163);">CodeCutter</div>
+    <div style="font-size:13px; margin-bottom:4px; color:rgb(165,163,163);">Get in Touch</div>
+  </div>
+
+  <!-- Column 5: Watch Free -->
+  <div style="flex:1 1 140px; min-width:140px;">
+    <div style="font-weight:bold; margin-bottom:10px;">Watch Free</div>
+    <div style="font-size:13px; margin-bottom:4px; color:rgb(165,163,163);">Discover on Plex</div>
+    <div style="font-size:13px; margin-bottom:4px; color:rgb(165,163,163);">TV Channel Finder</div>
+    <div style="font-size:13px; margin-bottom:4px; color:rgb(165,163,163);">What to Watch</div>
+    <div style="font-size:13px; margin-bottom:4px; color:rgb(165,163,163);">What to Watch on Netflix</div>
+    <div style="font-size:13px; margin-bottom:4px; color:rgb(165,163,163);">What to Watch on Hulu</div>
+    <div style="font-size:13px; margin-bottom:4px; color:rgb(165,163,163);">A24 Movies</div>
+    <div style="font-size:13px; margin-bottom:4px; color:rgb(165,163,163);">Valentine's Day Movies</div>
+    <div style="font-size:13px; margin-bottom:4px; color:rgb(165,163,163);">Christmas Movies</div>
+  </div>
+
+</div>
+
+<!-- Divider -->
+
+
+<!-- Footer Bottom -->
+<div style="width:100%; display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center;  color:rgb(165,163,163); font-size:13px; background-color:black;">
+  <div>
+    Copyright © 2025 Plex&nbsp;&nbsp;
+    <span>Privacy & Legal</span>&nbsp;&nbsp;
+    <span>Accessibility</span>&nbsp;&nbsp;
+    <span>Manage</span>&nbsp;&nbsp;
+    <span>Cookies</span>&nbsp;&nbsp;
+    Language: <span>English (US)</span>
+  </div>
+  <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;">
+    <img src="https://www.svgrepo.com/show/450186/instagram.svg" alt="Instagram" style="width:20px;height:20px;">
+    <img src="https://www.svgrepo.com/show/324169/tik-tok-brand-assets-video-socialnetwork-oneline.svg" alt="TikTok" style="width:30px;height:30px;">
+    <img src="https://www.svgrepo.com/show/475928/twitter-bird.svg" alt="Twitter" style="width:30px;height:30px;">
+    <img src="https://www.svgrepo.com/show/419122/butterfly-eco-ecology.svg" alt="Eco" style="width:35px;height:35px;">
+    <img src="https://www.svgrepo.com/show/359975/facebook.svg" alt="Facebook" style="width:35px;height:35px;">
+    <img src="https://www.svgrepo.com/show/450202/linkedin.svg" alt="LinkedIn" style="width:20px;height:20px;">
+    <img src="https://www.svgrepo.com/show/448884/youtube.svg" alt="YouTube" style="width:25px;height:25px;">
+  </div>
+</div>
+
+
+          
+        
+    </body>
+ </html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- Outer Container: 80% width, 900px height, centered -->
+<div class="container d-flex justify-content-center align-items-center"
+     style="width:80%; height:510px; margin-top:50px;">
+
+  <!-- Inner Box: 90% width, 600px height -->
+  <div class="row w-100" style="width:90%; height:600px;">
+
+    <!-- Left Section -->
+    <div class="col-lg-6 col-md-12 d-flex flex-column justify-content-center p-5"
+         style="background-color:rgb(237,235,235); height:600px;">
+
+      <h1 class="fw-bold mb-3" style="font-size:2.8vw;">WELCOME BACK</h1>
+
+      <p style="font-size:1.3vw; color:rgb(148,146,146);">
+        Welcome back! Please enter your details.
+      </p>
+
+      <!-- Login Form -->
+      <form id="loginForm" class="mt-3" onsubmit="loginUser(event)">
+        
+        <label class="fw-bold" style="font-size:1.2vw;">Email</label>
+        <input type="text" id="email" class="form-control form-control-lg mb-3"
+               placeholder="Enter your email" style="border-radius:20px;">
+
+        <label class="fw-bold" style="font-size:1.2vw;">Password</label>
+        <input type="password" id="password" class="form-control form-control-lg mb-3"
+               placeholder="***********" style="border-radius:20px;">
+
+        <div class="d-flex align-items-center mb-3">
+          <input type="checkbox" style="width:20px;height:20px;">
+          <span class="ms-3" style="font-size:1vw;">
+            <b>Remember me | Forget password</b>
+          </span>
+        </div>
+
+        <!-- Sign In Button -->
+        <button type="submit"
+                class="btn w-100 py-2"
+                style="font-size:1.3vw;border-radius:20px;background:rgb(242,88,88);color:white;">
+          Sign In
+        </button>
+      </form>
+
+      <!-- Google Button -->
+      <button class="btn w-100 py-2 mt-3"
+              style="font-size:1.3vw;border-radius:20px;background:#fff;">
+        <img src="https://cdn.pixabay.com/photo/2015/12/11/11/43/google-1088004_640.png"
+             style="width:35px;height:35px;margin-right:10px;">
+        Sign in with Google
+      </button>
+
+      <p class="mt-3" style="font-size:1.1vw;color:#4E4D4D;">
+        Don't have an account?
+        <span style="color:red;cursor:pointer;">Sign up for free!</span>
+      </p>
+
+    </div>
+
+    <!-- Right Section -->
+    <div class="col-lg-6 col-md-12 p-0" style="height:600px;">
+      <img src="https://i.pinimg.com/736x/4c/3f/b4/4c3fb4ea87a4b1cbc6f21e9e08bab7da.jpg"
+           class="img-fluid w-100 h-100" style="object-fit:cover;">
+    </div>
+
+  </div>
+</div>
+
+<!-- LOGIN SCRIPT -->
+<script>
+  function loginUser(event) {
+    event.preventDefault(); // stop form refresh
+
+    let email = document.getElementById("email").value.trim();
+    let password = document.getElementById("password").value.trim();
+
+    if (email === "" || password === "") {
+      alert("Please fill in both Email and Password.");
+      return false;
+    }
+
+    // Dummy login
+    if (email === "uzaifa" && password === "12345") {
+      alert("Login Successful!");
+      window.location.href = "vi2.html";  // redirect page
+      return true;
+    } else {
+      alert("Invalid Email or Password!");
+      return false;
+    }
+  }
+</script>
+
+</body>
+</html>
